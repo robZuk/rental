@@ -24,7 +24,7 @@ export async function POST(req: Request) {
         name,
         value,
         unit,
-        // Equipment: {}, // Add the required Equipment property
+        Equipment: {}, // Add the required Equipment
       },
     });
 
