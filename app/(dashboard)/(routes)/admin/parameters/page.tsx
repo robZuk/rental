@@ -19,6 +19,7 @@ const ParametersPage = async () => {
   const formattedParameters: Parameter[] = parameters.map((item) => ({
     id: item.id,
     name: item.name,
+    value: item.value,
     unit: item.unit,
     createdAt: format(item.createdAt, "MMMM do, yyyy"),
   }));
