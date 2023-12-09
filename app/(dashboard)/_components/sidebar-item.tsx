@@ -1,9 +1,10 @@
 "use client";
-
+import { useContext } from "react";
 import { LucideIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
+import { SheetContext } from "../../context/SheetContext";
 
 interface SidebarItemProps {
   icon: LucideIcon;
@@ -20,8 +21,11 @@ export const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
     pathname === href ||
     pathname?.startsWith(`${href}/`);
 
+  const setOpen = useContext(SheetContext);
+
   const onClick = () => {
     router.push(href);
+    setOpen(false);
   };
 
   return (
