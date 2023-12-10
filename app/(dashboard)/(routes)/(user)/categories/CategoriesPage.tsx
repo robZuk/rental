@@ -31,32 +31,36 @@ const CategoriesPage = ({ categories }: CategoriesProps) => {
   return (
     <div className="px-4 w-full">
       <Tabs defaultValue="Excavators">
-        <div className="flex flex-row">
-          <TabsList className="py-8">
-            {categories.map((item) => (
-              <TabsTrigger key={item.id} value={item.name} className="">
-                <div
+        {/* <div className="flex flex-row"> */}
+        <TabsList className="bg-white">
+          {categories.map((item) => (
+            <TabsTrigger
+              key={item.id}
+              value={item.name}
+              className="flex flex-col"
+            >
+              <div
+                style={{
+                  position: "relative",
+                  width: "80px",
+                  height: "40px",
+                }}
+              >
+                <Image
+                  src={item.imageUrl}
+                  alt={item.name}
+                  fill
+                  sizes="(min-width: 80px)"
                   style={{
-                    position: "relative",
-                    width: "80px",
-                    height: "40px",
+                    objectFit: "contain",
                   }}
-                >
-                  <Image
-                    src={item.imageUrl}
-                    alt={item.name}
-                    fill
-                    sizes="(min-width: 80px)"
-                    style={{
-                      objectFit: "contain",
-                    }}
-                  />
-                </div>
-                {item.name}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </div>
+                />
+              </div>
+              <p>{item.name}</p>
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        {/* </div> */}
 
         <div>
           {categories.map(
@@ -65,7 +69,7 @@ const CategoriesPage = ({ categories }: CategoriesProps) => {
                 {category.equipments.length === 0 ? (
                   <NoResults />
                 ) : (
-                  <div className="flex gap-4 pt-4">
+                  <div className="flex flex-wrap gap-4 pt-4">
                     {category.equipments.map((equipment, index) => (
                       <Card key={index}>
                         <CardHeader>
