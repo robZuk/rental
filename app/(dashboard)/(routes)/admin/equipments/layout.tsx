@@ -13,5 +13,5 @@ export default async function EquipmentsLayout({
     redirect("/sign-in");
   }
 
-  return <div className="w-full sm:px-6">{children}</div>;
+  return <div className="w-full px-2 sm:px-6">{children}</div>;
 }
