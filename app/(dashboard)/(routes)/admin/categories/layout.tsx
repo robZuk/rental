@@ -3,7 +3,6 @@ import { auth } from "@clerk/nextjs";
 
 export default async function CategoriesLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
   params: { storeId: string };
@@ -14,5 +13,5 @@ export default async function CategoriesLayout({
     redirect("/sign-in");
   }
 
-  return <div className="w-full sm:px-6">{children}</div>;
+  return <div className="w-full px-6">{children}</div>;
 }

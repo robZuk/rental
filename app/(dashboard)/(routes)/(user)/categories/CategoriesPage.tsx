@@ -61,47 +61,45 @@ const CategoriesPage = ({ categories }: CategoriesProps) => {
         <div>
           {categories.map(
             (category) => (
-              <>
-                <TabsContent key={category.id} value={category.name}>
-                  {category.equipments.length === 0 ? (
-                    <NoResults />
-                  ) : (
-                    <div className="flex gap-4 pt-4">
-                      {category.equipments.map((equipment) => (
-                        <Card>
-                          <CardHeader>
-                            <div
+              <TabsContent key={category.id} value={category.name}>
+                {category.equipments.length === 0 ? (
+                  <NoResults />
+                ) : (
+                  <div className="flex gap-4 pt-4">
+                    {category.equipments.map((equipment, index) => (
+                      <Card key={index}>
+                        <CardHeader>
+                          <div
+                            style={{
+                              position: "relative",
+                              width: "250px",
+                              height: "200px",
+                            }}
+                          >
+                            <Image
+                              src={equipment.imageUrl}
+                              alt={equipment.name}
+                              sizes="(min-width: 80px)"
+                              fill
                               style={{
-                                position: "relative",
-                                width: "250px",
-                                height: "200px",
+                                objectFit: "contain",
                               }}
-                            >
-                              <Image
-                                src={equipment.imageUrl}
-                                alt={equipment.name}
-                                sizes="(min-width: 80px)"
-                                fill
-                                style={{
-                                  objectFit: "contain",
-                                }}
-                              />
-                            </div>
-                            <CardTitle>{equipment.name}</CardTitle>
-                            <CardDescription className="flex gap-2">
-                              {equipment.producer}
-                              {equipment.model}
-                            </CardDescription>
-                          </CardHeader>
-                          <CardContent>
-                            <p>{formatter.format(equipment.price)}/day</p>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  )}
-                </TabsContent>
-              </>
+                            />
+                          </div>
+                          <CardTitle>{equipment.name}</CardTitle>
+                          <CardDescription className="flex gap-2">
+                            {equipment.producer}
+                            {equipment.model}
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <p>{formatter.format(equipment.price)}/day</p>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                )}
+              </TabsContent>
             )
             // category.equipments.map((equipment) => (
             //     <div>1</div>

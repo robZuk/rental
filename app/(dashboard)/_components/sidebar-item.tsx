@@ -25,7 +25,7 @@ export const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
 
   const onClick = () => {
     router.push(href);
-    setOpen(false);
+    window.innerWidth <= 768 && setOpen(false); // close sidebar on mobile
   };
 
   return (
