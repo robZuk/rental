@@ -5,7 +5,7 @@ import CategoriesTable from "./_components/CategoriesTable";
 
 import { Separator } from "@/components/ui/separator";
 import CategoriesHeader from "./_components/CategoriesHeader";
-import { Category } from "../types";
+import { Category } from "../../../../../types";
 
 const CategoriesPage = async () => {
   const categories = await prismadb.category.findMany({

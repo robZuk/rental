@@ -1,8 +1,8 @@
 import prismadb from "@/lib/prismadb";
 import React from "react";
-import CategoriesPage from "./CategoriesPage";
+import Categories from "./_components/categories";
 
-const Categories = async () => {
+const CategoriesPage = async () => {
   const categories = await prismadb.category.findMany({
     orderBy: {
       createdAt: "desc",
@@ -18,9 +18,9 @@ const Categories = async () => {
 
   return (
     <div>
-      <CategoriesPage categories={categories} />
+      <Categories categories={categories} />
     </div>
   );
 };
 
-export default Categories;
+export default CategoriesPage;

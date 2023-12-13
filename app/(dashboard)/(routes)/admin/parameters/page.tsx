@@ -3,7 +3,7 @@ import prismadb from "@/lib/prismadb";
 import { format } from "date-fns";
 import ParametersTable from "./_components/ParametersTable";
 
-import { Parameter } from "../types";
+import { Parameter } from "../../../../../types";
 import { Separator } from "@/components/ui/separator";
 import ParametersHeader from "./_components/ParametersHeader";
 

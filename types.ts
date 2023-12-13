@@ -8,13 +8,13 @@ export type Category = {
 export type Equipment = {
   id: string;
   name: string;
-  price: string;
+  price: number | string;
   producer: string;
   model: string;
   quantity: number;
-  parameters: Parameter[];
-  image: string;
-  category: string;
+  parameters?: Parameter[];
+  imageUrl: string;
+  categoryId: string;
   createdAt: string;
 };
 export type Parameter = {
@@ -22,6 +22,7 @@ export type Parameter = {
   name: string;
   value: string;
   unit: string;
+  equipmentId: string;
   createdAt: string;
 };
 

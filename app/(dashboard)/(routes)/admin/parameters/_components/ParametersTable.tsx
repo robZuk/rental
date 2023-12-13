@@ -2,7 +2,7 @@
 
 import { DataTable } from "@/components/data-table";
 import { columns } from "./columns";
-import { Parameter } from "../../types";
+import { Parameter } from "../../../../../../types";
 interface ParametersHeaderProps {
   parameters: Parameter[];
 }

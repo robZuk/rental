@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { AlertModal } from "@/components/modals/alert-modal";
-import { Parameter } from "../../types";
+import { Parameter } from "../../../../../../types";
 
 interface CellActionProps {
   data: Parameter;

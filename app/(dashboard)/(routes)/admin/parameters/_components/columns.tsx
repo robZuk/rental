@@ -3,7 +3,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { CellAction } from "./cell-action";
 import { ArrowUpDown } from "lucide-react";
-import { Parameter } from "../../types";
+import { Parameter } from "../../../../../../types";
 
 export const columns: ColumnDef<Parameter>[] = [
   {

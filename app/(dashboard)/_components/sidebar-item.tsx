@@ -35,7 +35,7 @@ export const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
       className={cn(
         "flex items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-500 hover:bg-slate-300/20",
         isActive &&
-          "text-slate-500 bg-slate-300/20 hover:bg-slate-300/20 hover:text-slate-500"
+          "text-foreground bg-slate-300/20 hover:bg-slate-300/20 hover:text-foreground"
       )}
     >
       <div className="flex items-center gap-x-2 py-4">

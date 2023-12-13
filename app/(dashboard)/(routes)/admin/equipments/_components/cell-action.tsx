@@ -17,7 +17,7 @@ import {
 
 import { AlertModal } from "@/components/modals/alert-modal";
 
-import { Equipment } from "../../types";
+import { Equipment } from "../../../../../../types";
 
 interface CellActionProps {
   data: Equipment;

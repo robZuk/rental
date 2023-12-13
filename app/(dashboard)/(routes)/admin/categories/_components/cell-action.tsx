@@ -17,7 +17,7 @@ import {
 
 import { AlertModal } from "@/components/modals/alert-modal";
 
-import { Category } from "../../types";
+import { Category } from "../../../../../../types";
 
 interface CellActionProps {
   data: Category;

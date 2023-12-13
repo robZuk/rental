@@ -2,7 +2,7 @@
 
 import { DataTable } from "@/components/data-table";
 import { columns } from "./columns";
-import { Equipment } from "../../types";
+import { Equipment } from "../../../../../../types";
 interface EquipmentsHeaderProps {
   equipments: Equipment[];
 }

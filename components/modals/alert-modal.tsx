@@ -1,8 +1,8 @@
-"use client";
+// "use client";
 
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
-import { Modal } from "@/components/modal";
+import { AlertDialog } from "@/components/alert-dialog";
 import { Button } from "@/components/ui/button";
 
 interface AlertModalProps {
@@ -18,18 +18,18 @@ export const AlertModal: React.FC<AlertModalProps> = ({
   onConfirm,
   loading,
 }) => {
-  const [isMounted, setIsMounted] = useState(false);
+  // const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsMounted(true);
+  // }, []);
 
-  if (!isMounted) {
-    return null;
-  }
+  // if (!isMounted) {
+  //   return null;
+  // }
 
   return (
-    <Modal
+    <AlertDialog
       title="Are you sure?"
       description="This action cannot be undone."
       isOpen={isOpen}
@@ -43,6 +43,6 @@ export const AlertModal: React.FC<AlertModalProps> = ({
           Continue
         </Button>
       </div>
-    </Modal>
+    </AlertDialog>
   );
 };

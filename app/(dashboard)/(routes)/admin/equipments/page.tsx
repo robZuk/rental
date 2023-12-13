@@ -6,7 +6,7 @@ import EquipmentsTable from "./_components/EquipmentsTable";
 
 import { Separator } from "@/components/ui/separator";
 import EquipmentsHeader from "./_components/EquipmentsHeader";
-import { Equipment } from "../types";
+import { Equipment } from "../../../../../types";
 
 const EquipmentsPage = async () => {
   const equipments = await prismadb.equipment.findMany({
@@ -25,7 +25,7 @@ const EquipmentsPage = async () => {
     name: item.name,
     model: item.model,
     producer: item.producer,
-    image: item.imageUrl,
+    imageUrl: item.imageUrl,
     price: formatter.format(item.price),
     quantity: item.quantity,
     parameters: item.parameters.map((param) => ({
@@ -37,7 +37,7 @@ const EquipmentsPage = async () => {
       createdAt: param.createdAt.toISOString(), // Convert Date to string
       updatedAt: param.updatedAt.toISOString(), // Convert Date to string
     })),
-    category: item.categoryId,
+    categoryId: item.categoryId,
     createdAt: format(item.createdAt, "MMMM do, yyyy"),
   }));
 
