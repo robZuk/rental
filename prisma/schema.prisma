@@ -23,19 +23,20 @@ model Category {
 }
 
 model Equipment {
-  id           String        @id @default(uuid())
-  categoryId   String // Foreign Key to Category
-  category     Category      @relation("CategoryToEquipment", fields: [categoryId], references: [id])
-  name         String
-  model        String
-  producer     String
-  price        Float
-  quantity     Int
-  parameters   Parameter[]
-  reservations Reservation[]
-  imageUrl     String
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  id               String            @id @default(uuid())
+  categoryId       String // Foreign Key to Category
+  category         Category          @relation("CategoryToEquipment", fields: [categoryId], references: [id])
+  name             String
+  model            String
+  producer         String
+  price            Float
+  quantity         Int
+  parameters       Parameter[]
+  reservationItems ReservationItem[]
+  imageUrl         String
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  // Reservation      Reservation[]
 
   @@index([categoryId])
 }
@@ -48,30 +49,45 @@ model Parameter {
   value       String
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-  Equipment   Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+  equipment   Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
 
   @@index([equipmentId])
 }
 
 model Reservation {
-  id          String    @id @default(uuid())
-  equipmentId String // Foreign Key to Equipment
-  dates       Date[]
-  isPayed     Boolean   @default(false)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  Equipment   Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+  id               String            @id @default(uuid())
+  // equipmentId      String // Foreign Key to Equipment
+  userId           String // Foreign Key to User
+  reservationItems ReservationItem[]
+  isPayed          Boolean           @default(false)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  // Equipment        Equipment         @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
 
+  // @@index([equipmentId])
+}
+
+model ReservationItem {
+  id            String      @id @default(uuid())
+  reservationId String // Foreign Key to Reservation
+  reservation   Reservation @relation(fields: [reservationId], references: [id])
+  equipmentId   String // Foreign Key to Equipment
+  equipment     Equipment   @relation(fields: [equipmentId], references: [id])
+  dates         Date[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([reservationId])
   @@index([equipmentId])
 }
 
 model Date {
-  id            String      @id @default(uuid())
-  reservationId String // Foreign Key to Reservation
-  date          DateTime
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  Reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+  id                String          @id @default(uuid())
+  reservationItemId String // Foreign Key to ReservationItem
+  date              DateTime
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  ReservationIem    ReservationItem @relation(fields: [reservationItemId], references: [id], onDelete: Cascade)
 
-  @@index([reservationId])
+  @@index([reservationItemId])
 }

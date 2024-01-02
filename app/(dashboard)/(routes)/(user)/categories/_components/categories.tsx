@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+
 import { Expand, CalendarPlus } from "lucide-react";
 import { Equipment } from "@prisma/client";
 import { TabsList, Tabs, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -11,11 +11,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { EquipmentModal } from "@/components/modals/equipment-modal";
 
+import useEquipmentModal from "@/hooks/use-equipment-modal";
 import { formatter } from "@/lib/utils";
 import NoResults from "@/components/no-results";
-import { set } from "date-fns";
+import getBase64 from "@/lib/getLocalBase64";
+// import { DynamicImage } from "./image";
 
 interface Category {
   id: string;
@@ -30,13 +31,24 @@ type CategoriesProps = {
   categories: Category[];
 };
 
-const Categories = ({ categories }: CategoriesProps) => {
-  const [open, setOpen] = useState(false);
-  const [data, setData] = useState<Equipment>();
+const Categories = async ({ categories }: CategoriesProps) => {
+  const equipmentModal = useEquipmentModal();
+  // const myBlurDataUrl = await getBase64("/logo.webp");
 
   return (
     <div className="px-4 w-full">
-      <EquipmentModal open={open} setOpen={setOpen} data={data} />
+      {/* <Image
+        src={"/logo`.webp"}
+        alt={"logo"}
+        width={250}
+        height={200}
+        priority={true}
+        placeholder="blur"
+        blurDataURL={myBlurDataUrl}
+        sizes="(min-width: 80px)"
+        // fill
+        // className="object-cover"
+      /> */}
       <Tabs defaultValue="Excavators">
         <TabsList className="bg-background">
           {categories.map((item) => (
@@ -65,28 +77,40 @@ const Categories = ({ categories }: CategoriesProps) => {
                 <NoResults />
               ) : (
                 <div className="flex flex-wrap gap-4 pt-4">
-                  {category.equipments.map((equipment, index) => (
+                  {category.equipments.map(async (equipment, index) => (
                     <Card key={index} className="group">
                       <CardHeader>
+                        {/* <DynamicImage
+                          // equipment={equipment}
+                          imageUrl={equipment.imageUrl}
+                          imageAlt={equipment.name}
+                        /> */}
                         <div className="relative w-[250px] h-[200px]">
                           <Image
                             src={equipment.imageUrl}
                             alt={equipment.name}
+                            width={250}
+                            height={200}
+                            priority={true}
+                            // placeholder="blur"
+                            // blurDataURL={await getBase64(equipment.imageUrl)}
                             sizes="(min-width: 80px)"
-                            fill
-                            className="object-contain"
+                            // fill
+                            // className="object-cover"
                           />
                           <Expand
-                            onClick={() => {
-                              setOpen(true);
-                              setData(equipment);
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              equipmentModal.onOpen(equipment);
+                              // setOpen(true);
+                              // setData(equipment);
                             }}
                             size={32}
-                            className="hidden  group-hover:block  absolute bottom-[-100px] right-14 bg-gray-300 p-1 rounded-lg text-white cursor-pointer hover:scale-[115%] duration-100"
+                            className="hidden  group-hover:block  absolute bottom-[-100px] right-14 bg-gray-400 p-1 rounded-lg text-white cursor-pointer hover:scale-[115%] duration-100"
                           />
                           <CalendarPlus
                             size={32}
-                            className="hidden group-hover:block absolute bottom-[-100px] right-2 bg-gray-300 p-1 rounded-lg text-white cursor-pointer    hover:scale-[115%] duration-100"
+                            className="hidden group-hover:block absolute bottom-[-100px] right-2 bg-gray-400 p-1 rounded-lg text-white cursor-pointer    hover:scale-[115%] duration-100"
                           />
                         </div>
 

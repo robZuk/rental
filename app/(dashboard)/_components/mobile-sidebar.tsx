@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { Menu } from "lucide-react";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -7,9 +7,7 @@ import { Sidebar } from "./sidebar";
 import { SheetContext } from "../../context/SheetContext";
 
 export const MobileSidebar = () => {
-  const [open, setOpen] = React.useState(false);
-
-  //  const SheetContext = React.createContext(setOpen);
+  const [open, setOpen] = useState(false);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>

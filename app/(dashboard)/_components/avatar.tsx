@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { UserIcon as Icon } from "lucide-react";
 import {
   Tooltip,
@@ -13,7 +13,6 @@ export const UserIcon = () => {
       <Tooltip>
         <TooltipTrigger asChild>
           <Avatar className="ml-4">
-            {/* <AvatarImage src="" /> */}
             <AvatarFallback>
               <Icon />
             </AvatarFallback>

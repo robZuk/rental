@@ -28,7 +28,7 @@ export const columns: ColumnDef<Equipment>[] = [
     cell: ({ row }) => (
       <div style={{ position: "relative", width: "80px", height: "50px" }}>
         <Image
-          src={row.original.image}
+          src={row.original.imageUrl}
           alt=""
           fill
           sizes="(min-width: 108px) 50vw, 100vw"

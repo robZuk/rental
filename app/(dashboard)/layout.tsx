@@ -1,23 +1,12 @@
 import { Navbar } from "./_components/navbar";
 import { Sidebar } from "./_components/sidebar";
 
-// import { auth } from "@clerk/nextjs";
-
-// import Navbar from "@/app/(dashboard)/_components/navbar";
-// import prismadb from "@/lib/prismadb";
-
 export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
   params: { storeId: string };
 }) {
-  // const { userId } = auth();
-
-  // if (!userId) {
-  //   redirect("/sign-in");
-  // }
-
   return (
     <div className="h-full">
       <div className="h-[80px] md:pl-56 fixed inset-y-0 w-full z-50">

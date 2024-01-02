@@ -7,6 +7,7 @@ import EquipmentsTable from "./_components/EquipmentsTable";
 import { Separator } from "@/components/ui/separator";
 import EquipmentsHeader from "./_components/EquipmentsHeader";
 import { Equipment } from "../../../../../types";
+import equipment from "../../(user)/categories/_components/equipment";
 
 const EquipmentsPage = async () => {
   const equipments = await prismadb.equipment.findMany({
@@ -18,6 +19,9 @@ const EquipmentsPage = async () => {
     },
   });
 
+  // equipments.forEach((item) => {
+  //   item.reservationItems.forEach((item) => console.log(item.dates));
+  // });
   const equipmentsLength = equipments.length;
 
   const formattedEquipments: Equipment[] = equipments.map((item) => ({

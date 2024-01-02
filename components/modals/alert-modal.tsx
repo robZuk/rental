@@ -1,7 +1,3 @@
-// "use client";
-
-// import { useEffect, useState } from "react";
-
 import { AlertDialog } from "@/components/alert-dialog";
 import { Button } from "@/components/ui/button";
 
