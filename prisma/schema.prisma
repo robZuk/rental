@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Category {
+  id         String      @id @default(uuid())
+  name       String
+  equipments Equipment[]
+
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Equipment {
+  id               String            @id @default(uuid())
+  categoryId       String // Foreign Key to Category
+  category         Category          @relation(fields: [categoryId], references: [id])
+  name             String
+  model            String
+  producer         String
+  price            Float
+  quantity         Int
+  parameters       Parameter[]
+  reservationItems ReservationItem[]
+  imageUrl         String
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  @@index([categoryId])
+}
+
+model Parameter {
+  id          String    @id @default(uuid())
+  equipmentId String // Foreign Key to Equipment
+  name        String
+  unit        String
+  value       String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  equipment   Equipment @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+
+  @@index([equipmentId])
+}
+
+model Reservation {
+  id               String            @id @default(uuid())
+  userId           String
+  reservationItems ReservationItem[]
+  isPayed          Boolean           @default(false)
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  customerClient   CustomerClient    @relation(fields: [userId], references: [userId])
+
+  @@index([userId])
+}
+
+model ReservationItem {
+  id             String      @id @default(uuid())
+  reservationId  String // Foreign Key to Reservation
+  reservation    Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+  equipmentId    String // Foreign Key to Equipment
+  equipment      Equipment   @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+  equipmentPrice Float
+  dates          Date[]
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@index([reservationId])
+  @@index([equipmentId])
+}
+
+model Date {
+  id                String          @id @default(uuid())
+  reservationItemId String // Foreign Key to ReservationItem
+  date              DateTime
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  ReservationIem    ReservationItem @relation(fields: [reservationItemId], references: [id], onDelete: Cascade)
+
+  @@index([reservationItemId])
+}
+
+model StripeCustomer {
+  id               String @id @default(uuid())
+  userId           String @unique
+  stripeCustomerId String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CustomerClient {
+  id           String        @id @default(uuid())
+  userId       String        @unique
+  email        String        @unique
+  imageUrl     String
+  firstName    String
+  lastName     String
+  reservations Reservation[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
