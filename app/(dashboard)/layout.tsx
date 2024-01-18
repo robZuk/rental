@@ -16,10 +16,10 @@ export default async function DashboardLayout({
       <div className="hidden md:flex h-full w-56 flex-col fixed inset-y-0 z-50">
         <Sidebar />
       </div>
-      <main className="md:pl-56 pt-[80px] pb-[20px] h-dvh bg-background">
+      <main className="md:pl-56 pt-[80px] pb-[20px] h-dvh min-h-[100vh] bg-background">
         {children}
       </main>
-      <footer className="absolute w-full bottom-[-100px] flex justify-center flex-wrap items-center md:pl-56 h-[100px] bg-background border-t">
+      <footer className="w-full  flex justify-center flex-wrap items-center md:pl-56 h-[100px] bg-background border-t">
         <p className="">{`Copyright ©${new Date().getFullYear()}`}</p>
         <a href="https://robertzuk.pl">Robet Żuk&nbsp;</a>
         <p> All Rights Reserved.</p>
