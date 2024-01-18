@@ -17,7 +17,7 @@ const DashboardPage = async () => {
           filter: "contrast(1.1)",
         }}
       />
-      <div className="absolute text-white bottom-[25%] sm:left-[8%] left-[5%]  ">
+      <div className="absolute text-white top-[20vh] sm:left-[8%] left-[5%]">
         <div>
           <p className="text-7xl font-extrabold">Build with us!</p>
           <p className="font-bold text-xl">
