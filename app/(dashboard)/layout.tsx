@@ -19,10 +19,10 @@ export default async function DashboardLayout({
       <main className="md:pl-56 pt-[80px] pb-[20px] h-dvh bg-background">
         {children}
       </main>
-      <footer className="absolute w-full bottom-[-50px] flex justify-center items-center md:pl-56 h-[50px] bg-background border-t">
+      <footer className="absolute w-full bottom-[-100px] flex justify-center flex-wrap items-center md:pl-56 h-[100px] bg-background border-t">
         <p className="">{`Copyright ©${new Date().getFullYear()}`}</p>
         <a href="https://robertzuk.pl">Robet Żuk&nbsp;</a>
-        <p> | All Rights Reserved.</p>
+        <p> All Rights Reserved.</p>
       </footer>
     </div>
   );
