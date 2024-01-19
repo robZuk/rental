@@ -57,13 +57,6 @@ npm install
 ### Run
 npm run dev
 
-### Admin user
-user:
-```
-u53627093@gmail.com
-```
-password:
-```
-Haslo123!@
-```
+### Default every users is admin 
+
 
