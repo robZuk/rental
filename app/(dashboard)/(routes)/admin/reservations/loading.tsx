@@ -17,7 +17,7 @@ const Loading = () => {
         </div>
       </div>
       <div className="">
-        <Skeleton className="w-full h-[70vh]" />
+        <Skeleton className="w-full h-[50vh]" />
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ const DashboardPage = async () => {
   return (
     <div className="relative">
       <video
-        src="/video.mp4"
+        src="/video1.mp4"
         autoPlay
         loop
         muted
@@ -19,7 +19,7 @@ const DashboardPage = async () => {
       />
       <div className="absolute text-white top-[20vh] sm:left-[8%] left-[5%]">
         <div>
-          <p className="text-7xl font-extrabold">Build with us!</p>
+          <p className="text-5xl sm:text-7xl font-extrabold">Build with us!</p>
           <p className="font-bold text-xl">
             Reserve our equipment to grow your buisness
           </p>

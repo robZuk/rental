@@ -11,13 +11,9 @@ const Loading = () => {
       <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center mb-4 pt-4">
         <Skeleton className="h-28 w-[220px]" />
         <Skeleton className="h-28 w-[220px]" />
-        {/* <div className="flex justify-between w-full">
-          <Skeleton className="h-10 w-[120px]" />
-          <Skeleton className="h-10 w-[120px]" />
-        </div> */}
       </div>
       <div className="">
-        <Skeleton className="w-full h-[70vh]" />
+        <Skeleton className="w-full h-[50vh]" />
       </div>
     </div>
   );
