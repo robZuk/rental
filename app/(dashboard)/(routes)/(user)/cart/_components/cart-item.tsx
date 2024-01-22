@@ -28,13 +28,13 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
       <div className="absolute z-10 right-0 top-4">
         <IconButton onClick={onRemove} icon={<X size={15} />} />
       </div>
-      <div className="relative w-[250px] h-[170px]">
+      <div className="relative w-[250px] h-[170px] bg-white rounded-md">
         <Image
           src={data.image}
           alt={data.name}
           fill
           sizes="(min-width: 80px)"
-          className="object-cover"
+          className="object-contain p-4"
         />
       </div>
       <div className=" flex flex-1 flex-col xl:flex-row  gap-6 py-6 sm:py-0 sm:pl-12">

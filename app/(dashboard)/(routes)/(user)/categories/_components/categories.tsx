@@ -31,18 +31,14 @@ const Categories = ({ categories, reservations }: CategoriesProps) => {
     setIsMounted(true);
   }, []);
 
-  setTimeout(() => {
-    return null;
-  }, 5000);
-
   if (!isMounted) {
     return null;
   }
 
   return (
-    <div className="px-4 w-full bg-background ">
-      <Tabs defaultValue="Excavators">
-        <TabsList className="bg-background px-0">
+    <div className="flex w-full ">
+      <Tabs defaultValue="Excavators" className="w-full">
+        <TabsList className="flex justify-center bg-background px-0">
           {categories.map((item) => (
             <TabsTrigger
               key={item.id}
@@ -68,7 +64,7 @@ const Categories = ({ categories, reservations }: CategoriesProps) => {
               {category.equipments.length === 0 ? (
                 <NoResults />
               ) : (
-                <div className="flex flex-wrap gap-4 pt-4 ">
+                <div className="flex justify-center flex-wrap gap-4 w-full pt-4 ">
                   {category.equipments.map(async (equipment, index) => (
                     <Card key={index} className="group">
                       <CardHeader>
@@ -95,8 +91,7 @@ const Categories = ({ categories, reservations }: CategoriesProps) => {
 
                         <CardTitle>{equipment.name}</CardTitle>
                         <CardDescription className="flex gap-2">
-                          {equipment.producer}
-                          {equipment.model}
+                          {equipment.producer} {equipment.model}
                         </CardDescription>
                       </CardHeader>
                       <CardContent>

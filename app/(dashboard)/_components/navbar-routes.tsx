@@ -19,19 +19,21 @@ export const NavbarRoutes = () => {
   return (
     <>
       <div className="flex items-center gap-x-2 ml-auto">
-        {isAdminPage ? (
-          <Link href="/">
-            <Button size="sm" variant="ghost">
-              <LogOut className="h-4 w-4 mr-2" />
-              Exit
-            </Button>
-          </Link>
-        ) : isAdmin(userId) ? (
-          <Link href="/admin/overview" className="px-0 mx-4">
-            <Button size="sm" variant="ghost" className="px-0 sm:px-2">
-              Admin mode
-            </Button>
-          </Link>
+        {userId ? (
+          isAdminPage ? (
+            <Link href="/">
+              <Button size="sm" variant="ghost">
+                <LogOut className="h-4 w-4 mr-2" />
+                Exit
+              </Button>
+            </Link>
+          ) : isAdmin(userId) ? (
+            <Link href="/admin/overview" className="px-0 mx-4">
+              <Button size="sm" variant="ghost" className="px-0 sm:px-2">
+                Admin mode
+              </Button>
+            </Link>
+          ) : null
         ) : null}
         <div className="flex items-center">
           {!userId && (

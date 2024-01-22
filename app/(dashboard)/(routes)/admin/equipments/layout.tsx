@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs";
+import { isAdmin } from "@/lib/admin";
 
 export default async function EquipmentsLayout({
   children,
@@ -11,6 +12,9 @@ export default async function EquipmentsLayout({
 
   if (!userId) {
     redirect("/sign-in");
+  }
+  if (!isAdmin(userId)) {
+    redirect("/");
   }
 
   return <div className="w-full px-2 sm:px-6">{children}</div>;

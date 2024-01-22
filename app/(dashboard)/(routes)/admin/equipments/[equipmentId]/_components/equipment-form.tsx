@@ -46,7 +46,6 @@ const formSchema = z.object({
   model: z.string().min(1),
   quantity: z.number().gte(1),
   price: z.number().gte(1),
-
   parameters: z.array(parameterSchema),
   categoryId: z.string().min(1),
 });

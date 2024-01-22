@@ -37,9 +37,12 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
       });
       router.refresh();
     } catch (error) {
-      // toast.error(
-      //   "Make sure you removed all equipments using this category first."
-      // );
+      toast({
+        variant: "destructive",
+        title:
+          "Make sure you removed all reservations using this equipment first.",
+        duration: 3000,
+      });
     } finally {
       setOpen(false);
       setLoading(false);

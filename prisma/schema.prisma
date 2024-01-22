@@ -69,7 +69,7 @@ model ReservationItem {
   reservationId  String // Foreign Key to Reservation
   reservation    Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
   equipmentId    String // Foreign Key to Equipment
-  equipment      Equipment   @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+  equipment      Equipment   @relation(fields: [equipmentId], references: [id])
   equipmentPrice Float
   dates          Date[]
   createdAt      DateTime    @default(now())

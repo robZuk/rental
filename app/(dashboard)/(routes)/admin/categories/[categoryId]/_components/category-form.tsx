@@ -149,7 +149,7 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({ initialData }) => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-8 w-full"
         >
-          <div className="max-w-xl p-4 rounded-md">
+          <div className="max-w-xl py-4 rounded-md">
             <FormField
               control={form.control}
               name="imageUrl"

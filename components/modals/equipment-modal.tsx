@@ -52,7 +52,7 @@ export const EquipmentModal = () => {
     isOpen &&
       !user &&
       toast({
-        variant: "success",
+        variant: "info",
         title: "Sign In before reservation!",
         duration: 3000,
 
@@ -103,7 +103,7 @@ export const EquipmentModal = () => {
             <DialogTitle className="pb-4">{equipment?.name}</DialogTitle>
             <div className="flex flex-col md:flex-row gap-8  p-2">
               <div className="min-w-[200px]">
-                <div className="relative w-[200px] sm:w-[250px]">
+                <div className="relative w-[200px] sm:w-[250px] p-2 bg-white rounded-md">
                   <AspectRatio ratio={16 / 9}>
                     <Image
                       src={equipment?.imageUrl as string}
@@ -118,11 +118,11 @@ export const EquipmentModal = () => {
                   <p>{equipment?.producer}</p>
                   <p> {equipment?.model}</p>
                 </div>
-                <ul>
+                <ul className="pt-4">
                   {equipment?.parameters?.map((item, index) => (
                     <li
                       key={item.name}
-                      className={`flex justify-between max-w-[300px] px-1 ${
+                      className={`flex justify-between max-w-[300px] p-1 text-sm rounded-sm ${
                         index % 2 === 0 ? "bg-secondary" : ""
                       }`}
                     >
