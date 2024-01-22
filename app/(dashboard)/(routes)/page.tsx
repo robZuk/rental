@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const DashboardPage = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
   return (
     <div className="relative">
       <video
