@@ -23,8 +23,7 @@
 Admin
 - User Login/Register Panel using Clerk
 - Dashboard Panel
-- Categories, Equipments and reservations management
-User
+- Categories, equipments and reservations management
 - User Login/Register Panel using Clerk
 - User reservations panel
 - Equipments reservations with payments
