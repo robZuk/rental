@@ -49,7 +49,7 @@ export const NavbarRoutes = () => {
 
           <UserButton afterSignOutUrl="/" />
           {!isAdminPage && <Cart />}
-          <div className="sm:ml-4">
+          <div className="ml-4">
             <ThemeToggle />
           </div>
         </div>

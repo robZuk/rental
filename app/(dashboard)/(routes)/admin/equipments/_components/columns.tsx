@@ -32,21 +32,10 @@ export const columns: ColumnDef<EquipmentsColumn>[] = [
             src={row.original.imageUrl}
             alt="Image"
             fill
-            className="rounded-md object-cover"
+            className="rounded-md object-contain"
           />
         </AspectRatio>
       </div>
-      // <div className="relative w-[80px] h-[50px] py-10 px-13 bg-white">
-      //   <Image
-      //     src={row.original.imageUrl}
-      //     alt=""
-      //     fill
-      //     sizes="(min-width: 108px) 50vw, 100vw"
-      //     style={{
-      //       objectFit: "contain",
-      //     }}
-      //   />
-      // </div>
     ),
   },
   {
