@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import useCart from "@/hooks/use-cart";
@@ -8,6 +8,9 @@ import { formatter } from "@/lib/utils";
 import { useAuth } from "@clerk/nextjs";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
+import { useMutation } from "react-query";
+
+import { add } from "date-fns";
 
 const Summary = () => {
   const searchParams = useSearchParams();
@@ -38,39 +41,47 @@ const Summary = () => {
     }
   }, [searchParams, removeAll, toast, router]);
 
-  const cartItems: {
-    userId: string;
-    equipmentId: string;
-    equipmentName: string;
-    equipmentPrice: number | string;
-    dates: Date[];
-  }[] = [];
+  const cartItems = useMemo(() => {
+    const itemsArray: {
+      userId: string;
+      equipmentId: string;
+      equipmentName: string;
+      equipmentPrice: number | string;
+      dates: Date[];
+    }[] = [];
 
-  items.map(
-    (item) =>
-      item.userId === userId &&
-      cartItems.push({
-        userId: item.userId,
-        equipmentId: item.equipmentId,
-        equipmentName: item.name,
-        equipmentPrice: item.price,
-        dates: item.dates,
-      })
-  );
+    items.map(
+      (item) =>
+        item.userId === userId &&
+        itemsArray.push({
+          userId: item.userId,
+          equipmentId: item.equipmentId,
+          equipmentName: item.name,
+          equipmentPrice: item.price,
+          dates: item.dates,
+        })
+    );
+
+    return itemsArray;
+  }, [items, userId]);
 
   const cartData = {
     userId,
     cartItems,
   };
 
-  const totalPrice = cartItems.reduce((total, item) => {
-    return total + Number(item.equipmentPrice) * item.dates.length;
-  }, 0);
+  const totalPrice = useMemo(() => {
+    return cartItems.reduce((total, item) => {
+      return total + Number(item.equipmentPrice) * item.dates.length;
+    }, 0);
+  }, [cartItems]);
+
+  const checkoutMutation = useMutation((data: any) =>
+    axios.post("/api/checkout", data)
+  );
 
   const onCheckout = async () => {
-    const response = await axios.post(`/api/checkout`, {
-      cartData,
-    });
+    const response = await checkoutMutation.mutateAsync({ cartData });
     window.location = response.data.url;
   };
 
