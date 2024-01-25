@@ -1,6 +1,5 @@
 import { Navbar } from "./_components/navbar";
 import { Sidebar } from "./_components/sidebar";
-import { Separator } from "@/components/ui/separator";
 
 export default async function DashboardLayout({
   children,

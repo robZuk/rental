@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
-import { useMutation } from "react-query";
+import { useMutation, QueryClient, useQueryClient } from "react-query";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -30,11 +30,17 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const [open, setOpen] = useState<boolean>(false);
   // const [loading, setLoading] = useState(false);
 
+  const queryClient = useQueryClient();
+
   const deleteCategory = async (id: string) => {
-    return axios.delete(`/api/categories/${id}`);
+    return await axios.delete(`/api/categories/${id}`);
   };
 
-  const { isLoading, mutate } = useMutation(deleteCategory);
+  const { isLoading, mutate } = useMutation(deleteCategory, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("categories");
+    },
+  });
 
   const onDelete = async () => {
     try {

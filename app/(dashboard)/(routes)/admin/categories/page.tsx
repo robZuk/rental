@@ -1,25 +1,34 @@
 "use client";
 import React from "react";
 import prismadb from "@/lib/prismadb";
+import axios from "axios";
 import { format } from "date-fns";
 import CategoriesTable from "./_components/CategoriesTable";
 import { useQuery } from "react-query";
 import { Separator } from "@/components/ui/separator";
 import CategoriesHeader from "./_components/CategoriesHeader";
 import { CategoriesColumn } from "@/types";
-import { GETCATEGORIES } from "../../../../api/categories/route";
 
 const CategoriesPage = () => {
-  const { data: categories } = useQuery("categories", GETCATEGORIES);
+  const getCategories = async () => {
+    return await axios.get(`/api/categories`);
+  };
 
-  const categoriesLength = categories?.length ?? 0;
+  const {
+    isLoading,
+    isError,
+    data: categories,
+    error,
+  } = useQuery("categories", getCategories);
+
+  const categoriesLength = categories?.data.length ?? 0;
 
   const formattedCategories: CategoriesColumn[] = categories
-    ? categories.map((item) => ({
+    ? categories.data.map((item: any) => ({
         id: item.id,
         name: item.name,
         imageUrl: item.imageUrl,
-        createdAt: format(item.createdAt, "MM/dd/yyyy"),
+        createdAt: format(new Date(item.createdAt), "MM/dd/yyyy"),
       }))
     : [];
 
@@ -27,7 +36,11 @@ const CategoriesPage = () => {
     <>
       <CategoriesHeader categoriesLenght={categoriesLength} />
       <Separator />
-      <CategoriesTable categories={formattedCategories} />
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <CategoriesTable categories={formattedCategories} />
+      )}
     </>
   );
 };
