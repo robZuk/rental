@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
+import { useMutation } from "react-query";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -26,13 +27,18 @@ interface CellActionProps {
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const router = useRouter();
   const { toast } = useToast();
-  const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+  // const [loading, setLoading] = useState(false);
+
+  const deleteCategory = async (id: string) => {
+    return axios.delete(`/api/categories/${id}`);
+  };
+
+  const { isLoading, mutate } = useMutation(deleteCategory);
 
   const onDelete = async () => {
     try {
-      setLoading(true);
-      await axios.delete(`/api/categories/${data.id}`);
+      await mutate(data.id);
       toast({
         variant: "success",
         title: "Category deleted.",
@@ -48,9 +54,31 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
       });
     } finally {
       setOpen(false);
-      setLoading(false);
     }
   };
+
+  // const onDelete = async () => {
+  //   try {
+  //     setLoading(true);
+  //     await axios.delete(`/api/categories/${data.id}`);
+  //     toast({
+  //       variant: "success",
+  //       title: "Category deleted.",
+  //       duration: 3000,
+  //     });
+  //     router.refresh();
+  //   } catch (error) {
+  //     toast({
+  //       variant: "destructive",
+  //       title:
+  //         "Make sure you removed all equipments using this category first.",
+  //       duration: 3000,
+  //     });
+  //   } finally {
+  //     setOpen(false);
+  //     setLoading(false);
+  //   }
+  // };
 
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
@@ -67,7 +95,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
         isOpen={open}
         onClose={() => setOpen(false)}
         onConfirm={onDelete}
-        loading={loading}
+        loading={isLoading}
       />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>

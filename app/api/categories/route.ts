@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs";
+import { QueryFunctionContext } from "react-query";
 
 import prismadb from "@/lib/prismadb";
 
@@ -37,13 +38,28 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET(req: Request) {
-  try {
-    const categories = await prismadb.category.findMany({});
+// export async function GETCATEGORIES(req: Request) {
+//   try {
+//     const categories = await prismadb.category.findMany({
+//       orderBy: {
+//         createdAt: "desc",
+//       },
+//     });
 
-    return NextResponse.json(categories);
-  } catch (error) {
-    console.log("[CATEGORIES_GET]", error);
-    return new NextResponse("Internal error", { status: 500 });
-  }
+//     return NextResponse.json(categories);
+//   } catch (error) {
+//     console.log("[CATEGORIES_GET]", error);
+//     return new NextResponse("Internal error", { status: 500 });
+//   }
+// }
+export async function GETCATEGORIES(context: QueryFunctionContext) {
+  // pobieranie danych z bazy danych
+  const categories = await prismadb.category.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  // zwracanie danych zamiast Response
+  return categories;
 }

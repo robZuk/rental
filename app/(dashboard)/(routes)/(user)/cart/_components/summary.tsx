@@ -10,8 +10,6 @@ import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { useMutation } from "react-query";
 
-import { add } from "date-fns";
-
 const Summary = () => {
   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
@@ -81,8 +79,16 @@ const Summary = () => {
   );
 
   const onCheckout = async () => {
-    const response = await checkoutMutation.mutateAsync({ cartData });
-    window.location = response.data.url;
+    try {
+      const response = await checkoutMutation.mutateAsync({ cartData });
+      window.location = response.data.url;
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Error checking out",
+        description: error.message,
+      });
+    }
   };
 
   return (
