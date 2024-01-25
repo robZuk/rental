@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
@@ -28,7 +28,6 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const router = useRouter();
   const { toast } = useToast();
   const [open, setOpen] = useState<boolean>(false);
-  // const [loading, setLoading] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -36,31 +35,53 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
     return await axios.delete(`/api/categories/${id}`);
   };
 
-  const { isLoading, mutate } = useMutation(deleteCategory, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("categories");
-    },
-  });
+  const { isLoading, isError, isSuccess, mutate } = useMutation(
+    deleteCategory,
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("categories");
+      },
+    }
+  );
 
-  const onDelete = async () => {
-    try {
-      await mutate(data.id);
+  useEffect(() => {
+    isSuccess &&
       toast({
         variant: "success",
         title: "Category deleted.",
         duration: 3000,
       });
-      router.refresh();
-    } catch (error) {
+    isError &&
       toast({
         variant: "destructive",
         title:
           "Make sure you removed all equipments using this category first.",
-        duration: 3000,
       });
-    } finally {
-      setOpen(false);
-    }
+    setOpen(false);
+  }, [isSuccess, isError, toast]);
+
+  // const onDelete = async () => {
+  //   try {
+  //     await mutate(data.id);
+  //     toast({
+  //       variant: "success",
+  //       title: "Category deleted.",
+  //       duration: 3000,
+  //     });
+  //   } catch (error) {
+  //     toast({
+  //       variant: "destructive",
+  //       title:
+  //         "Make sure you removed all equipments using this category first.",
+  //       duration: 3000,
+  //     });
+  //   } finally {
+  //     setOpen(false);
+  //   }
+  // };
+
+  const onDelete = async () => {
+    await mutate(data.id);
   };
 
   // const onDelete = async () => {
