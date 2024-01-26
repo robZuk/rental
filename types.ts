@@ -3,7 +3,7 @@ export type Category = {
   name: string;
   imageUrl: string;
   equipments: Equipment[];
-  // createdAt: string;
+  createdAt: string;
 };
 
 export type Equipment = {
@@ -17,7 +17,7 @@ export type Equipment = {
   reservationItems?: ReservationItem[];
   imageUrl: string;
   categoryId: string;
-  // createdAt: string;
+  createdAt: string;
 };
 
 export type CartItem = {
@@ -45,13 +45,10 @@ export type ReservationItem = {
   equipmentId: string;
   dates: DateItem[];
   equipmentPrice: number | string;
-  // value: number | string;
 };
 
 export type ReservationItemDetails = {
   id: string;
-  // reservationId: string;
-  // equipmentId: string;
   dates: DateItem[];
   equipmentPrice: number | string;
   equipmentName: string;
@@ -62,7 +59,7 @@ export type DateItem = {
   id: string;
   reservationItemId: string;
   date: string;
-  // createdAt: string;
+  createdAt: string;
 };
 
 export type Parameter = {
@@ -133,7 +130,7 @@ export type CategoriesColumn = {
   id: string;
   name: string;
   imageUrl: string;
-  // createdAt: string;
+  createdAt: string;
 };
 
 //user columns

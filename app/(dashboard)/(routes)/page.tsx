@@ -13,7 +13,7 @@ const DashboardPage = () => {
         className="w-full object-cover absolute top-0"
         style={{
           height: "calc(100vh - 80px)",
-          filter: "contrast(1.1)",
+          filter: "contrast(1.1) grayscale(.5)",
         }}
       />
       <div className="absolute text-white top-[20vh] sm:left-[8%] left-[5%]">
