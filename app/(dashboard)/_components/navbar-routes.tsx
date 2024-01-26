@@ -18,7 +18,7 @@ export const NavbarRoutes = () => {
 
   return (
     <>
-      <div className="flex items-center gap-x-2 ml-auto">
+      <nav className="flex items-center gap-x-2 ml-auto">
         {userId ? (
           isAdminPage ? (
             <Link href="/">
@@ -53,7 +53,7 @@ export const NavbarRoutes = () => {
             <ThemeToggle />
           </div>
         </div>
-      </div>
+      </nav>
     </>
   );
 };

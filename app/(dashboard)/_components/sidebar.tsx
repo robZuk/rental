@@ -8,9 +8,9 @@ export const Sidebar = () => {
       <div className="p-6">
         <Logo />
       </div>
-      <div className="flex flex-col w-full">
+      <nav className="flex flex-col w-full">
         <SidebarRoutes />
-      </div>
+      </nav>
     </div>
   );
 };

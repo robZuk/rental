@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-const DashboardPage = async () => {
+const DashboardPage = () => {
   return (
     <div className="relative">
       <video
