@@ -1,14 +1,9 @@
-// "use client";
-import React, { useState } from "react";
+import React from "react";
 import prismadb from "@/lib/prismadb";
 import { Heading } from "@/components/heading";
-import axios from "axios";
+
 import ReservationsTable from "./_components/ReservationTable";
 import { formatter } from "@/lib/utils";
-// import { useRouter } from "next/navigation";
-// import { useToast } from "@/components/ui/use-toast";
-import { Button } from "@/components/ui/button";
-import { Trash } from "lucide-react";
 
 const ReservationPage = async ({
   params,
@@ -78,3 +73,15 @@ const ReservationPage = async ({
 };
 
 export default ReservationPage;
+
+export async function generateStaticParams() {
+  const reservations = await prismadb.reservation.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return reservations.map((reservation) => ({
+    reservationId: reservation.id.toString(),
+  }));
+}

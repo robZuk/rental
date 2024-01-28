@@ -44,8 +44,6 @@ const equipmentReservationsPage = async ({
     });
   });
 
-  console.log(reservedDays);
-
   return (
     <div className="px-2 pt-4">
       {equipment && (

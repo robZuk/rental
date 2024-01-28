@@ -9,7 +9,6 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
     },
   });
 
-  await new Promise((resolve) => setTimeout(resolve, 5000));
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-2 pt-6">
@@ -20,3 +19,15 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
 };
 
 export default CategoryPage;
+
+export async function generateStaticParams() {
+  const categories = await prismadb.category.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return categories.map((category) => ({
+    categoryId: category.id.toString(),
+  }));
+}
