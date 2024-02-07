@@ -13,7 +13,5 @@ export default async function CategoriesLayout({
     redirect("/sign-in");
   }
 
-  console.log(userId);
-
   return <div className="w-full px-2 sm:px-6">{children}</div>;
 }
