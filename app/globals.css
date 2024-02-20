@@ -78,7 +78,7 @@ body,
 
   @keyframes intro {
     0% {
-      transform: translateX(20%);
+      transform: translateX(30%);
       opacity: 0;
     }
     75% {
@@ -94,7 +94,9 @@ body,
 
   .intro {
     animation-name: intro;
+    animation-delay: 0.5s;
     animation-duration: 1s;
     animation-timing-function: ease-in-out;
+    animation-fill-mode: backwards;
   }
 }

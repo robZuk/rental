@@ -31,7 +31,7 @@ const DashboardPage = () => {
           priority
         />
       </div>
-      <div className="absolute text-white top-[20vh] right-[8vw] p-8 intro">
+      <div className="absolute text-white top-[20vh] right-[8vw] p-4 sm:p-8 intro">
         <div>
           <p className="text-5xl sm:text-7xl font-extrabold">Build with us!</p>
           <p className="font-bold text-xl">
