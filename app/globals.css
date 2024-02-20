@@ -8,6 +8,8 @@ body,
   height: 100%;
 }
 
+/* class "intro"  */
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -72,5 +74,27 @@ body,
   .no-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+  }
+
+  @keyframes intro {
+    0% {
+      transform: translateX(20%);
+      opacity: 0;
+    }
+    75% {
+      transform: translateX(-2%);
+      opacity: 0.6;
+    }
+
+    100% {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  }
+
+  .intro {
+    animation-name: intro;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
   }
 }
