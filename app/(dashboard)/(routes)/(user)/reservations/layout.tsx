@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs";
 
-export default async function CategoriesLayout({
+export default async function ReservatiosLayout({
   children,
 }: {
   children: React.ReactNode;

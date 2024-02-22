@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import prismadb from "@/lib/prismadb";
 import { format } from "date-fns";
 import CategoriesTable from "./_components/CategoriesTable";

@@ -99,4 +99,28 @@ body,
     animation-timing-function: ease-in-out;
     animation-fill-mode: backwards;
   }
+
+  /* HTML: <div class="loader"></div> */
+  .loader {
+    width: 220px;
+    height: 16px;
+    border-radius: 20px;
+    color: #514b82;
+    border: 2px solid;
+    position: relative;
+  }
+  .loader::before {
+    content: "";
+    position: absolute;
+    margin: 2px;
+    inset: 0 100% 0 0;
+    border-radius: inherit;
+    background: #e2bd2d;
+    animation: l6 2s infinite;
+  }
+  @keyframes l6 {
+    100% {
+      inset: 0;
+    }
+  }
 }

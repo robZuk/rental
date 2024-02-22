@@ -1,7 +1,7 @@
-"use client";
-
-import { ClipLoader } from "react-spinners";
-
 export const Loader = () => {
-  return <ClipLoader color="#94a3b8" size={50} />;
+  return (
+    <div className="w-full h-[90vh] flex justify-center items-center">
+      <div className="loader text-foreground"></div>
+    </div>
+  );
 };
