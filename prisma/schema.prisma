@@ -101,7 +101,7 @@ model StripeCustomer {
 
 model CustomerClient {
   id           String        @id @default(uuid())
-  userId       String        
+  userId       String        @unique
   email        String        
   username     String?        
   imageUrl     String

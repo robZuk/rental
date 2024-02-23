@@ -71,13 +71,13 @@ export async function POST(req: Request) {
       },
     });
     // Set public metadata
-    if (newUser) {
-      await clerkClient.users.updateUserMetadata(id, {
-        publicMetadata: {
-          userId: newUser.id,
-        },
-      });
-    }
+    // if (newUser) {
+    //   await clerkClient.users.updateUserMetadata(id, {
+    //     publicMetadata: {
+    //       userId: newUser.id,
+    //     },
+    //   });
+    // }
 
     return NextResponse.json({ message: "User created", user: newUser });
   }
@@ -88,7 +88,7 @@ export async function POST(req: Request) {
 
     const updatedUser = await prismadb.customerClient.update({
       where: {
-        id: id,
+        userId: id,
       },
       data: {
         username: username,
