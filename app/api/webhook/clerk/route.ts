@@ -10,11 +10,11 @@ import { Webhook } from "svix";
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
-  const CLERK_WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
+  const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
-  if (!CLERK_WEBHOOK_SECRET) {
+  if (!WEBHOOK_SECRET) {
     throw new Error(
-      "Please add CLERK_WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"
+      "Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"
     );
   }
 
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
   const body = JSON.stringify(payload);
 
   // Create a new Svix instance with your secret.
-  const wh = new Webhook(CLERK_WEBHOOK_SECRET);
+  const wh = new Webhook(WEBHOOK_SECRET);
 
   let evt: WebhookEvent;
 
@@ -63,26 +63,25 @@ export async function POST(req: Request) {
     const { id, email_addresses, image_url, first_name, last_name, username } =
       evt.data;
 
-    // const user = {
-    //   clerkId: id,
-    //   email: email_addresses[0].email_address,
-    //   username: username!,
-    //   firstName: first_name,
-    //   lastName: last_name,
-    //   photo: image_url,
-    // };
+    const user = {
+      userId: id,
+      email: email_addresses[0].email_address,
+      //   username: username!,
+      firstName: first_name,
+      lastName: last_name,
+      imageUrl: image_url,
+    };
 
-    // const newUser = await createUser(user);
-    const newUser = await axios.post(`/api/users`);
+    const newUser = await axios.post(`/api/users`, user);
 
     // Set public metadata
-    // if (newUser) {
-    //   await clerkClient.users.updateUserMetadata(id, {
-    //     publicMetadata: {
-    //       userId: newUser._id,
-    //     },
-    //   });
-    // }
+    if (newUser.data) {
+      await clerkClient.users.updateUserMetadata(id, {
+        publicMetadata: {
+          userId: newUser.data._id,
+        },
+      });
+    }
 
     return NextResponse.json({ message: "OK", user: newUser });
   }
@@ -103,7 +102,7 @@ export async function POST(req: Request) {
   //     return NextResponse.json({ message: "OK", user: updatedUser });
   //   }
 
-  // DELETE
+  //   // DELETE
   //   if (eventType === "user.deleted") {
   //     const { id } = evt.data;
 
@@ -112,8 +111,8 @@ export async function POST(req: Request) {
   //     return NextResponse.json({ message: "OK", user: deletedUser });
   //   }
 
-  console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
-  console.log("Webhook body:", body);
+  //   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
+  //   console.log("Webhook body:", body);
 
-  return new Response("", { status: 200 });
+  //   return new Response("", { status: 200 });
 }
