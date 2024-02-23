@@ -190,13 +190,13 @@ export async function POST(req: Request) {
     const newUser = await axios.post(`/api/users`, user);
 
     // Set public metadata
-    if (newUser.data) {
-      await clerkClient.users.updateUserMetadata(id, {
-        publicMetadata: {
-          userId: newUser.data._id,
-        },
-      });
-    }
+    // if (newUser.data) {
+    //   await clerkClient.users.updateUserMetadata(id, {
+    //     publicMetadata: {
+    //       userId: newUser.data._id,
+    //     },
+    //   });
+    // }
 
     return NextResponse.json({ message: "OK", user: newUser });
   }
