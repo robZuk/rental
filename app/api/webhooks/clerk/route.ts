@@ -122,6 +122,7 @@ import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import prismadb from "@/lib/prismadb";
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
@@ -178,25 +179,37 @@ export async function POST(req: Request) {
     const { id, email_addresses, image_url, first_name, last_name, username } =
       evt.data;
 
-    const user = {
-      userId: id,
-      email: email_addresses[0].email_address,
-      username: username!,
-      firstName: first_name,
-      lastName: last_name,
-      imageUrl: image_url,
-    };
+    const newUser = await prismadb.customerClient.create({
+      data: {
+        userId: id,
+        email: email_addresses[0].email_address,
+        imageUrl: image_url,
+        firstName: first_name,
+        lastName: last_name,
+      },
+    });
 
-    // const newUser = await axios.post(`/api/users`, { user });
+    // const user = {
+    //   userId: id,
+    //   email: email_addresses[0].email_address,
+    //   username: username!,
+    //   firstName: first_name,
+    //   lastName: last_name,
+    //   imageUrl: image_url,
+    // };
+
+    // const newUser = await axios.post(`/api/users`, user);
+
+    // console.log(newUser.data);
 
     // Set public metadata
-    if (newUser.data) {
-      await clerkClient.users.updateUserMetadata(id, {
-        publicMetadata: {
-          userId: newUser.data._id,
-        },
-      });
-    }
+    // if (newUser) {
+    await clerkClient.users.updateUserMetadata(id, {
+      publicMetadata: {
+        userId: newUser.id,
+      },
+    });
+    // }
 
     return NextResponse.json({ message: "OK", user: newUser });
   }
