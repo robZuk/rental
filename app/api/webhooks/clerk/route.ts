@@ -187,7 +187,7 @@ export async function POST(req: Request) {
       imageUrl: image_url,
     };
 
-    const newUser = await axios.post(`/api/users`);
+    const newUser = await axios.post(`/api/users`, { user });
 
     // Set public metadata
     if (newUser.data) {
