@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   try {
     let customer = await prismadb.customerClient.findUnique({
       where: {
-        userId: user?.id,
+        id: user?.id,
       },
     });
 
