@@ -83,8 +83,8 @@ export async function POST(req: Request) {
       });
     }
 
-    // return NextResponse.json({ message: "OK", user: newUser });
-    return NextResponse.json({ message: "OK" });
+    return NextResponse.json({ message: "OK", user: newUser });
+    // return NextResponse.json({ message: "OK" });
   }
 
   // UPDATE
