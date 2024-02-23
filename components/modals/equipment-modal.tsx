@@ -78,7 +78,7 @@ export const EquipmentModal = () => {
   const onAddToCart: MouseEventHandler<HTMLButtonElement> = async (event) => {
     user
       ? (event.stopPropagation(),
-        await axios.post(`/api/users`), //create new user in database
+        // await axios.post(`/api/users`), //create new user in database
         equipment && formattedDays && user
           ? cart.addItem({
               userId: user.id,

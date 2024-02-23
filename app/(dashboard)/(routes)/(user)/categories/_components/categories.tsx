@@ -68,7 +68,7 @@ const Categories = ({ categories, reservations }: CategoriesProps) => {
                   {category.equipments.map(async (equipment, index) => (
                     <Card key={index} className="group">
                       <CardHeader>
-                        <div className="relative w-[200px] sm:w-[250px] p-4 bg-white my-2 rounded-md">
+                        <div className="relative w-[200px] sm:w-[250px] p-4 bg-current my-2 rounded-md">
                           <AspectRatio ratio={16 / 9} className="bg-muted">
                             <Image
                               src={equipment.imageUrl}
