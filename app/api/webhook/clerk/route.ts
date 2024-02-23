@@ -63,27 +63,28 @@ export async function POST(req: Request) {
     const { id, email_addresses, image_url, first_name, last_name, username } =
       evt.data;
 
-    const user = {
-      userId: id,
-      email: email_addresses[0].email_address,
-      //   username: username!,
-      firstName: first_name,
-      lastName: last_name,
-      imageUrl: image_url,
-    };
+    // const user = {
+    //   userId: id,
+    //   email: email_addresses[0].email_address,
+    //   //   username: username!,
+    //   firstName: first_name,
+    //   lastName: last_name,
+    //   imageUrl: image_url,
+    // };
 
-    const newUser = await axios.post(`/api/users`, user);
+    // const newUser = await axios.post(`/api/users`, user);
 
-    // Set public metadata
-    if (newUser.data) {
-      await clerkClient.users.updateUserMetadata(id, {
-        publicMetadata: {
-          userId: newUser.data._id,
-        },
-      });
-    }
+    // // Set public metadata
+    // if (newUser.data) {
+    //   await clerkClient.users.updateUserMetadata(id, {
+    //     publicMetadata: {
+    //       userId: newUser.data._id,
+    //     },
+    //   });
+    // }
 
-    return NextResponse.json({ message: "OK", user: newUser });
+    // return NextResponse.json({ message: "OK", user: newUser });
+    return NextResponse.json({ message: "OK" });
   }
 
   // UPDATE
@@ -111,8 +112,8 @@ export async function POST(req: Request) {
   //     return NextResponse.json({ message: "OK", user: deletedUser });
   //   }
 
-  //   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
-  //   console.log("Webhook body:", body);
+  console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
+  console.log("Webhook body:", body);
 
-  //   return new Response("", { status: 200 });
+  return new Response("", { status: 200 });
 }
