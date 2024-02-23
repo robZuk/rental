@@ -86,19 +86,12 @@ export async function POST(req: Request) {
   if (eventType === "user.updated") {
     const { id, image_url, first_name, last_name, username } = evt.data;
 
-    const user = {
-      firstName: first_name,
-      lastName: last_name,
-      username: username!,
-      photo: image_url,
-    };
-
     const updatedUser = await prismadb.customerClient.update({
       where: {
         id: id,
       },
       data: {
-        username: username!,
+        username: username,
         imageUrl: image_url,
         firstName: first_name,
         lastName: last_name,
@@ -109,17 +102,17 @@ export async function POST(req: Request) {
   }
 
   // DELETE
-  if (eventType === "user.deleted") {
-    const { id } = evt.data;
+  // if (eventType === "user.deleted") {
+  //   const { id } = evt.data;
 
-    const deletedUser = await prismadb.category.delete({
-      where: {
-        id: id,
-      },
-    });
+  //   const deletedUser = await prismadb.category.delete({
+  //     where: {
+  //       id: id,
+  //     },
+  //   });
 
-    return NextResponse.json({ message: "User deleted", user: deletedUser });
-  }
+  //   return NextResponse.json({ message: "User deleted", user: deletedUser });
+  // }
 
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
   console.log("Webhook body:", body);
