@@ -103,6 +103,7 @@ model CustomerClient {
   id           String        @id @default(uuid())
   userId       String        @unique
   email        String        @unique
+  username     String?        
   imageUrl     String
   firstName    String
   lastName     String
