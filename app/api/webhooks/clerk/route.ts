@@ -190,15 +190,15 @@ export async function POST(req: Request) {
     // const newUser = await axios.post(`/api/users`, { user });
 
     // Set public metadata
-    // if (newUser.data) {
-    //   await clerkClient.users.updateUserMetadata(id, {
-    //     publicMetadata: {
-    //       userId: newUser.data._id,
-    //     },
-    //   });
-    // }
+    if (newUser.data) {
+      await clerkClient.users.updateUserMetadata(id, {
+        publicMetadata: {
+          userId: newUser.data._id,
+        },
+      });
+    }
 
-    return NextResponse.json({ message: "OK", user });
+    return NextResponse.json({ message: "OK", user: newUser });
   }
 
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
