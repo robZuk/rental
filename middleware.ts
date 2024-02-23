@@ -6,8 +6,8 @@ export default authMiddleware({
     "/categories",
     "/api/uploadthing",
     "/api/webhook",
-    "/api/webhooks/clerk",
-    "/api/webhooks/stripe",
+    "/api/webhook/clerk",
+    "/api/webhook/stripe",
   ],
 });
 
