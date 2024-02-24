@@ -59,7 +59,7 @@ model Reservation {
   isPayed          Boolean           @default(false)
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
-  customerClient   CustomerClient    @relation(fields: [userId], references: [id])
+  customerClient   CustomerClient    @relation(fields: [userId], references: [userId])
 
   @@index([userId])
 }

@@ -69,7 +69,7 @@ const Categories = ({ categories, reservations }: CategoriesProps) => {
                     <Card key={index} className="group">
                       <CardHeader>
                         <div className="relative w-[200px] sm:w-[250px] p-4 bg-white my-2 rounded-md">
-                          <AspectRatio ratio={16 / 9} className="bg-muted">
+                          <AspectRatio ratio={16 / 9}>
                             <Image
                               src={equipment.imageUrl}
                               alt={equipment.name}
