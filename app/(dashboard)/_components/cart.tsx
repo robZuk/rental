@@ -6,12 +6,10 @@ import { useRouter } from "next/navigation";
 import { ShoppingBag } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@clerk/nextjs";
 
 function Cart() {
   const [isMounted, setIsMounted] = useState(false);
   const cart = useCart();
-  const { userId } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -22,8 +20,8 @@ function Cart() {
     return null;
   }
 
-  const userCart = [];
-  cart.items.map((item) => item.userId === userId && userCart.push(item));
+  // const userCart = [];
+  // cart?.items.map((item) => item.userId === userId && userCart.push(item));
 
   return (
     <div className="flex justify-center items-center gap-x-4">
@@ -33,7 +31,7 @@ function Cart() {
       >
         <ShoppingBag size={20} color="white" />
         <span className="ml-2 text-sm font-medium text-white">
-          {userCart.length}
+          {cart.items.length}
         </span>
       </Button>
     </div>

@@ -3,6 +3,9 @@ import { Navbar } from "./_components/navbar";
 import { Sidebar } from "./_components/sidebar";
 import { Footer } from "./_components/footer";
 import { usePathname } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
+import { useEffect } from "react";
+import useCart from "@/hooks/use-cart";
 
 export default function DashboardLayout({
   children,
@@ -10,7 +13,15 @@ export default function DashboardLayout({
   children: React.ReactNode;
   params: { storeId: string };
 }) {
+  const cart = useCart();
   const pathname = usePathname();
+  const { userId } = useAuth();
+
+  //clera cart after SignOut
+  useEffect(() => {
+    !userId && cart.removeAll();
+  }, [userId]);
+
   return (
     <div className="h-full bg-background pb-8==">
       <div className="h-[80px] md:pl-56 fixed w-full z-50">

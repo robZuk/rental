@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { toast } from "@/components/ui/use-toast";
-
 import { persist, createJSONStorage } from "zustand/middleware";
 import { CartItem } from "@/types";
 
@@ -18,7 +17,6 @@ const useCart = create(
       items: [],
       addItem: (data: CartItem) => {
         const currentItems = get().items;
-
         const existingItem = currentItems.find(
           (item) => item.equipmentId === data.equipmentId
         );

@@ -1,6 +1,7 @@
 import prismadb from "@/lib/prismadb";
 import React from "react";
 import Categories from "./_components/categories";
+
 const CategoriesPage = async () => {
   const categories = await prismadb.category.findMany({
     orderBy: {
@@ -19,7 +20,7 @@ const CategoriesPage = async () => {
       },
     },
   });
-
+  // await prismadb.reservation.deleteMany();
   const reservations = await prismadb.reservation.findMany({
     orderBy: {
       createdAt: "desc",
