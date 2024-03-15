@@ -3,6 +3,8 @@ import React from "react";
 import Categories from "./_components/categories";
 
 const CategoriesPage = async () => {
+  await prismadb.reservation.deleteMany();
+
   const categories = await prismadb.category.findMany({
     orderBy: {
       createdAt: "desc",

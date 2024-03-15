@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/table";
 import { ReservationItemDetails } from "@/types";
 import { formatter } from "@/lib/utils";
+import { format } from "date-fns";
 
 type ReservationTableProps = {
   reservationItems: ReservationItemDetails[];
@@ -40,7 +41,7 @@ const ReservationTable: React.FC<ReservationTableProps> = ({
               <ul>
                 {item.dates.map((date) => (
                   <li key={date.id}>
-                    {String(date.date.toLocaleString().slice(0, 10))}
+                    {format(new Date(date.date), "MM/dd/yyyy")}
                   </li>
                 ))}
               </ul>
