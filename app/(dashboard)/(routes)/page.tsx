@@ -5,10 +5,6 @@ import Image from "next/image";
 import Hero from "../../../public/hero1.jpg";
 
 const DashboardPage = () => {
-  // await new Promise((resolve) => {
-  //   setTimeout(resolve, 2000);
-  // });
-
   return (
     <div className="relative">
       <div

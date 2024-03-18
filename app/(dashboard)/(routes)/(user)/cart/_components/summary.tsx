@@ -25,7 +25,6 @@ const Summary = () => {
         duration: 3000,
       });
       router.push("/categories");
-      removeAll();
     }
 
     if (searchParams.get("canceled")) {
@@ -72,6 +71,7 @@ const Summary = () => {
       cartData,
     });
     window.location = response.data.url;
+    removeAll();
   };
 
   return (
