@@ -40,7 +40,7 @@ export async function generateStaticParams() {
     },
   });
 
-  return equipments.map((equipment) => ({
+  return equipments?.map((equipment) => ({
     equipmentId: equipment.id.toString(),
   }));
 }

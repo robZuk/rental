@@ -81,7 +81,7 @@ export async function generateStaticParams() {
     },
   });
 
-  return reservations.map((reservation) => ({
+  return reservations?.map((reservation) => ({
     reservationId: reservation.id.toString(),
   }));
 }
