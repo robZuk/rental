@@ -20,7 +20,7 @@ export default function DashboardLayout({
   //clera cart after SignOut
   useEffect(() => {
     !userId && cart.removeAll();
-  }, [userId]);
+  }, [userId, cart]);
 
   return (
     <div className="h-full bg-background pb-8">
