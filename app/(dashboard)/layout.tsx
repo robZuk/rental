@@ -23,7 +23,7 @@ export default function DashboardLayout({
   }, [userId]);
 
   return (
-    <div className="h-full bg-background pb-8==">
+    <div className="h-full bg-background pb-8">
       <div className="h-[80px] md:pl-56 fixed w-full z-50">
         <Navbar />
       </div>
