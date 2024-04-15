@@ -20,14 +20,14 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
 
 export default CategoryPage;
 
-// export async function generateStaticParams() {
-//   const categories = await prismadb.category.findMany({
-//     orderBy: {
-//       createdAt: "desc",
-//     },
-//   });
+export async function generateStaticParams() {
+  const categories = await prismadb.category.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 
-//   return categories.map((category) => ({
-//     categoryId: category.id.toString(),
-//   }));
-// }
+  return categories?.map((category) => ({
+    categoryId: category.id.toString(),
+  }));
+}
