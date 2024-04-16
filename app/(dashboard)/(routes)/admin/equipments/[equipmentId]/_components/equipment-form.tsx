@@ -76,10 +76,10 @@ export const EquipmentForm: React.FC<EquipmentFormProps> = ({
     : "Equipment created.";
   const action = initialData
     ? loading
-      ? "Saving changes"
+      ? "Saving changes..."
       : "Save changes"
     : loading
-    ? "Creating"
+    ? "Creating..."
     : "Create";
 
   const initialParameters = [{ name: "", value: "", unit: "" }];
