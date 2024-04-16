@@ -74,7 +74,13 @@ export const EquipmentForm: React.FC<EquipmentFormProps> = ({
   const toastMessage = initialData
     ? "Equipment updated."
     : "Equipment created.";
-  const action = initialData ? "Save changes" : "Create";
+  const action = initialData
+    ? loading
+      ? "Saving changes"
+      : "Save changes"
+    : loading
+    ? "Creating"
+    : "Create";
 
   const initialParameters = [{ name: "", value: "", unit: "" }];
 
