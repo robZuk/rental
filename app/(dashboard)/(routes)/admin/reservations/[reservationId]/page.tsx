@@ -74,14 +74,14 @@ const ReservationPage = async ({
 
 export default ReservationPage;
 
-export async function generateStaticParams() {
-  const reservations = await prismadb.reservation.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+// export async function generateStaticParams() {
+//   const reservations = await prismadb.reservation.findMany({
+//     orderBy: {
+//       createdAt: "desc",
+//     },
+//   });
 
-  return reservations?.map((reservation) => ({
-    reservationId: reservation.id.toString(),
-  }));
-}
+//   return reservations?.map((reservation) => ({
+//     reservationId: reservation.id.toString(),
+//   }));
+// }
