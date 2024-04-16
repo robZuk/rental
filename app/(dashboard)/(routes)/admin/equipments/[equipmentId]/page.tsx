@@ -7,7 +7,7 @@ const EquipmentPage = async ({
 }: {
   params: { equipmentId: string };
 }) => {
-  const equipment = await prismadb.equipment.findUnique({
+  const equipment = await prismadb.equipment?.findUnique({
     where: {
       id: params.equipmentId,
     },
@@ -17,7 +17,7 @@ const EquipmentPage = async ({
     },
   });
 
-  const categories = await prismadb.category.findMany({
+  const categories = await prismadb.category?.findMany({
     orderBy: {
       createdAt: "desc",
     },
@@ -34,7 +34,7 @@ const EquipmentPage = async ({
 export default EquipmentPage;
 
 export async function generateStaticParams() {
-  const equipments = await prismadb.equipment.findMany({
+  const equipments = await prismadb.equipment?.findMany({
     orderBy: {
       createdAt: "desc",
     },
