@@ -33,14 +33,14 @@ const EquipmentPage = async ({
 
 export default EquipmentPage;
 
-export async function generateStaticParams() {
-  const equipments = await prismadb.equipment?.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+// export async function generateStaticParams() {
+//   const equipments = await prismadb.equipment?.findMany({
+//     orderBy: {
+//       createdAt: "desc",
+//     },
+//   });
 
-  return equipments?.map((equipment) => ({
-    equipmentId: equipment.id.toString(),
-  }));
-}
+//   return equipments?.map((equipment) => ({
+//     equipmentId: equipment.id.toString(),
+//   }));
+// }
