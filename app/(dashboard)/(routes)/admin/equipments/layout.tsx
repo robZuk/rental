@@ -10,9 +10,6 @@ export default async function EquipmentsLayout({
 }) {
   const { userId } = auth();
 
-  if (!userId) {
-    redirect("/sign-in");
-  }
   if (!isAdmin(userId)) {
     redirect("/");
   }

@@ -20,7 +20,7 @@ const CategoriesPage = async () => {
       },
     },
   });
-  // await prismadb.reservation.deleteMany();
+
   const reservations = await prismadb.reservation.findMany({
     orderBy: {
       createdAt: "desc",

@@ -10,10 +10,6 @@ export default async function CategoriesLayout({
 }) {
   const { userId } = auth();
 
-  if (!userId) {
-    redirect("/sign-in");
-  }
-
   if (!isAdmin(userId)) {
     redirect("/");
   }
