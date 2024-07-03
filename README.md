@@ -1,4 +1,4 @@
-# Shoppingify
+# Rental
 
 ### https://rental-robzuk.vercel.app/
 
