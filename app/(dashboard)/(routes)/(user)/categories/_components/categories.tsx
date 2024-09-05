@@ -23,7 +23,7 @@ const Categories = ({ categories }: CategoriesProps) => {
   }
 
   return (
-    <div className="flex w-full justify-center gap-8 my-6 flex-wrap">
+    <div className="flex w-full justify-center gap-8 my-6 flex-wrap px-4">
       {categories.map((category) => (
         <div key={category.id} className="">
           <Link
