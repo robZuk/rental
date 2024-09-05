@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 import { MouseEventHandler } from "react";
+import { redirect } from "next/navigation";
+
+import { useRouter } from "next/navigation";
 
 import {
   Dialog,
@@ -27,6 +30,8 @@ export const EquipmentModal = () => {
 
   const { toast } = useToast();
   const { user } = useUser();
+
+  const router = useRouter();
 
   const cart = useCart();
 
@@ -75,23 +80,21 @@ export const EquipmentModal = () => {
   const formattedDays = days?.map((day) => new Date(day));
 
   const onAddToCart: MouseEventHandler<HTMLButtonElement> = async (event) => {
-    user
-      ? (event.stopPropagation(),
-        // await axios.post(`/api/users`), //create new user in database
-        equipment && formattedDays && user
-          ? cart.addItem({
-              userId: user.id,
-              equipmentId: equipment.id,
-              name: equipment.name,
-              price: equipment.price,
-              image: equipment.imageUrl,
-              dates: formattedDays,
-              initialDays: initialDays,
-              createdAt: new Date(),
-            })
-          : null,
-        modalEquipment.onClose())
-      : (window.location.href = "sign-in");
+    event.stopPropagation(),
+      // await axios.post(`/api/users`), //create new user in database
+      equipment && formattedDays && user
+        ? cart.addItem({
+            userId: user.id,
+            equipmentId: equipment.id,
+            name: equipment.name,
+            price: equipment.price,
+            image: equipment.imageUrl,
+            dates: formattedDays,
+            initialDays: initialDays,
+            createdAt: new Date(),
+          })
+        : null,
+      modalEquipment.onClose();
   };
 
   return (
@@ -158,7 +161,7 @@ export const EquipmentModal = () => {
 
             <Button
               className="w-36"
-              disabled={!days?.length}
+              disabled={!days?.length || !user}
               onClick={onAddToCart}
             >
               <ShoppingCart size={24} className="mr-2 h-4 w-4" />
