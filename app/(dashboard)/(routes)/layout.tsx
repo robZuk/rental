@@ -11,7 +11,7 @@ function RoutesLayuot({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     !userId && cart.removeAll();
-  }, [userId]);
+  }, [userId, cart]);
 
   return (
     <div
