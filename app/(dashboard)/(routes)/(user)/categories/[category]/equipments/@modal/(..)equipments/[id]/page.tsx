@@ -1,13 +1,29 @@
-"use client";
-import { useEffect } from "react";
-import useModalEquipment from "@/hooks/use-equipment-modal";
-function EquipmentModalPage() {
-  const equipmentModal = useModalEquipment();
+import { Metadata } from "next";
+import prismadb from "@/lib/prismadb";
+import OpenModal from "../../_components/OpenModal";
 
-  useEffect(() => {
-    equipmentModal.onOpen();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> => {
+  const { id } = params;
+  const equipment = await prismadb.equipment.findUnique({
+    where: {
+      id: id,
+    },
+  });
+
+  return {
+    title: `${equipment?.name}`,
+  };
+};
+function EquipmentModalPage({}) {
+  return (
+    <div>
+      <OpenModal />
+    </div>
+  );
 }
 
 export default EquipmentModalPage;

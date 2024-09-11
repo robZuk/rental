@@ -7,10 +7,27 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
+import { Metadata } from "next";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { formatter } from "@/lib/utils";
 import NoResults from "@/components/no-results";
 import ExpandComponent from "../../_components/expand";
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> => {
+  const { id } = params;
+  const equipment = await prismadb.equipment.findUnique({
+    where: {
+      id: id,
+    },
+  });
+  return {
+    title: `${equipment?.name}`,
+  };
+};
 
 async function EquipmentPage({
   params,
