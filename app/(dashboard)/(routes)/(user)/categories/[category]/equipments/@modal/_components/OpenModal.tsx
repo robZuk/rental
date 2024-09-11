@@ -6,14 +6,21 @@ function OpenModal() {
   const equipmentModal = useModalEquipment();
 
   useEffect(() => {
-    equipmentModal.onOpen();
     if (equipmentModal.equipment?.name) {
       document.title = equipmentModal.equipment.name;
     }
-
+    equipmentModal.onOpen();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (equipmentModal.isOpen && equipmentModal.equipment?.name) {
+      document.title = equipmentModal.equipment.name;
+    } else {
+      document.title = "Rental";
+    }
+  }, [equipmentModal.isOpen, equipmentModal.equipment?.name]);
+
   return null;
 }
-
 export default OpenModal;
