@@ -11,7 +11,8 @@ function RoutesLayuot({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     !userId && cart.removeAll();
-  }, [userId, cart]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]);
 
   return (
     <div
