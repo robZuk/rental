@@ -1,6 +1,7 @@
 import React from "react";
 import prismadb from "@/lib/prismadb";
 import { CategoryForm } from "./_components/category-form";
+import BackButton from "../../_components/BackButton";
 
 const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
   const category = await prismadb.category.findUnique({
@@ -11,6 +12,7 @@ const CategoryPage = async ({ params }: { params: { categoryId: string } }) => {
 
   return (
     <div className="flex-col">
+      <BackButton />
       <div className="flex-1 space-y-4 p-2 pt-6">
         <CategoryForm initialData={category} />
       </div>

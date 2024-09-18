@@ -1,6 +1,7 @@
 import React from "react";
 import prismadb from "@/lib/prismadb";
 import { EquipmentForm } from "./_components/equipment-form";
+import BackButton from "../../_components/BackButton";
 
 const EquipmentPage = async ({
   params,
@@ -24,6 +25,7 @@ const EquipmentPage = async ({
   });
   return (
     <div className="flex-col">
+      <BackButton />
       <div className="flex-1 space-y-4 p-2 pt-6">
         <EquipmentForm initialData={equipment} categories={categories} />
       </div>

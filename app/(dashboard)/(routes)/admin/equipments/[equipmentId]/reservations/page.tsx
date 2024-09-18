@@ -2,6 +2,7 @@ import React from "react";
 import prismadb from "@/lib/prismadb";
 import { Heading } from "@/components/heading";
 import { CalendarComponent } from "@/components/calendar";
+import BackButton from "../../../_components/BackButton";
 
 const equipmentReservationsPage = async ({
   params,
@@ -46,12 +47,15 @@ const equipmentReservationsPage = async ({
 
   return (
     <div className="px-2 pt-4">
-      {equipment && (
-        <Heading
-          title={equipment.name}
-          description={`Reserved days (${reservedDays.length}).`}
-        />
-      )}
+      <BackButton />
+      <div className="pt-4">
+        {equipment && (
+          <Heading
+            title={equipment.name}
+            description={`Reserved days (${reservedDays.length}).`}
+          />
+        )}
+      </div>
       <div className="flex py-4">
         <CalendarComponent days={reservedDays} />
       </div>

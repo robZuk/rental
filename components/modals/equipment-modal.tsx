@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
 import { MouseEventHandler } from "react";
-import { redirect } from "next/navigation";
-
-import { useRouter } from "next/navigation";
 
 import {
   Dialog,
@@ -30,8 +27,6 @@ export const EquipmentModal = () => {
 
   const { toast } = useToast();
   const { user } = useUser();
-
-  const router = useRouter();
 
   const cart = useCart();
 
